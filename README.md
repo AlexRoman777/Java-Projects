@@ -1,4 +1,4 @@
-# JAVA Projects
+# [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
 
 A few Java projects I've done so far.
 
