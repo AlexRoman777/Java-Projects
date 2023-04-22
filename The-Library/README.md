@@ -1,5 +1,7 @@
 # The Library
 
+[![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](https://forthebadge.com)
+
 The Library is a Java application that allows users to manage a library.
 
 The application is built using Java 17, Maven, Docker, MySQL, JUnit, Jacoco, Mockito and Mermaid.
@@ -33,6 +35,8 @@ The application is built using Java 17, Maven, Docker, MySQL, JUnit, Jacoco, Moc
 ---
 
 ## Getting Started
+
+[![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://forthebadge.com)
 
 ### Prerequisites
 
