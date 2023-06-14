@@ -1,5 +1,3 @@
--- Active: 1674435687826@@127.0.0.1@3306@The Library
-
 
 
 CREATE DATABASE IF NOT EXISTS `The Library`;
@@ -274,7 +272,7 @@ INSERT INTO Movie (`copy`, `available`, `title`, `genre`, `price`, `year`, `dire
 (3, 1, 'John Wick 2', 'Action', 100.00, 2017, 'Chad Stahels', 136, 'R');
 
 INSERT INTO User (`username`, `email`, `address`) VALUES
-('Alex Roman', 'alex@roman.com', 'Street 1'),
+('Big Boss', 'big@boss.com", 'Street 1'),
 ('John Smith', 'john@smith.com', 'Street 2'),
 ('Jane Doe', 'jane@doe.com', 'Street 3'),
 ('John Doe', 'john@doe', 'Street 4'),

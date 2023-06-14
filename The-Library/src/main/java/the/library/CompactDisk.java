@@ -1,14 +1,12 @@
 package the.library;
 
 public class CompactDisk implements Item {
-    // Interface variables
     private int copy;
     private int available;
     private String title;
     private String genre;
     private float price;
     private int year;
-    // CompactDisk variables
     private String artist;
     private int tracks;
     private String ageRating;

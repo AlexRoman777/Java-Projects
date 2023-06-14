@@ -57,14 +57,7 @@ public class DatabaseIO {
         return conn;
     }
 
-    // Not in use - Part of CRUD
-    public void createDatabase(Connection conn, String name) throws SQLException {
-        String createString = "CREATE DATABASE IF NOT EXISTS " + name;
-        Statement stmt = conn.createStatement();
-        stmt.executeUpdate(createString);
-    }
 
-    // Remove a book from the database
     public void deleteBook(String id) throws SQLException {
         String sql = "DELETE FROM Book WHERE id = ?";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -72,13 +65,6 @@ public class DatabaseIO {
         pstmt.executeUpdate();
     }
 
-    /**
-     * This method reads the last five books added to the database.
-     * Good for testing the last insertions
-     * 
-     * @return String[][] - A 2D array of the last five books
-     * @throws SQLException
-     */
     public String[][] readLastFiveBooks() throws SQLException {
         String sql = """
                 SELECT * FROM `Book` ORDER BY `id` DESC LIMIT 5""";
@@ -94,15 +80,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    // Calculate MENU
-
-    /**
-     * This method reads the total value of a specific type of media
-     * 
-     * @param type - The type of media, e.g. Book, CompactDisk, Game or Movie
-     * @return
-     * @throws SQLException
-     */
     public String[][] readTotalValue(String type) throws SQLException {
         String sql = """
                 SELECT SUM(price) FROM %s
@@ -118,13 +95,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * This method reads the total value of all media by using a union in the
-     * database
-     * 
-     * @return
-     * @throws SQLException
-     */
     public String[][] readTotalValue() throws SQLException {
         String sql = """
                 SELECT SUM(price) FROM Book
@@ -155,12 +125,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * This method reads the total value of all media using a view in the database
-     * 
-     * @return
-     * @throws SQLException
-     */
     public String[][] readTotalValueView() throws SQLException {
         String sql = """
                 SELECT * FROM TotalLibraryValue""";
@@ -174,14 +138,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    // Read MENU
-
-    /**
-     * This method reads all books in the database
-     * 
-     * @return - A 2D array of all books
-     * @throws SQLException
-     */
     public String[][] readAllBooks() throws SQLException {
         String sql = """
                 SELECT * FROM `Book`""";
@@ -197,12 +153,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * Reads all from CompactDisk table
-     * 
-     * @return String[][]
-     * @throws SQLException
-     */
     public String[][] readAllCDs() throws SQLException {
         String sql = """
                 SELECT * FROM CompactDisk""";
@@ -218,12 +168,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * Reads all games from Game table
-     * 
-     * @return String[][]
-     * @throws SQLException
-     */
     public String[][] readAllGames() throws SQLException {
         String sql = """
                 SELECT * FROM Game""";
@@ -240,12 +184,7 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * Reads all movies from Movie table
-     * 
-     * @return String[][]
-     * @throws SQLException
-     */
+
     public String[][] readAllMovies() throws SQLException {
         String sql = """
                 SELECT * FROM Movie""";
@@ -261,12 +200,7 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * Reads all users from User table
-     * 
-     * @return String[][]
-     * @throws SQLException
-     */
+ 
     public String[][] readAllUsers() throws SQLException {
         String sql = """
                 SELECT * FROM User""";
@@ -281,15 +215,7 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    // Special MENU
-
-    /**
-     * It reads one book in the database
-     * 
-     * @param id - The id of the book to be read
-     * @return - A 2D array of all books
-     * @throws SQLException
-     */
+   
     public String[][] readOneBook(int id) throws SQLException {
         String sql = """
                 SELECT * FROM Book WHERE `id` = ?""";
@@ -306,14 +232,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    /**
-     * This method reads all books in the database that are not in good or excellent
-     * condition
-     * 
-     * @return - A 2D array of all books
-     * @throws SQLException
-     */
-
     public String[][] readBadCondition() throws SQLException {
         String sql = """
                 SELECT * FROM `Book` WHERE `condition` != 'Good' AND `condition` != 'Excellent';
@@ -329,14 +247,6 @@ public class DatabaseIO {
         }
         return results.toArray(new String[0][0]);
     }
-
-    // Final version
-    /**
-     * Returns the database schema
-     * 
-     * @return - A list of all tables in the database
-     * @throws SQLException
-     */
 
     public String[][] getSchema() throws SQLException {
         String sql = """
@@ -364,14 +274,6 @@ public class DatabaseIO {
         stmt.execute(sql);
     }
 
-    // Add MENU
-
-    /**
-     * This method adds a new book to the database
-     * 
-     * @param book - The book to be added - As a Book object
-     * @throws SQLException
-     */
 
     public void addBookFromObject(Book book) throws SQLException {
         String sql = """
@@ -390,12 +292,6 @@ public class DatabaseIO {
         System.out.println("Book added");
     }
 
-    /**
-     * This method adds a new game to the database
-     * 
-     * @param game - The game to be added - As a Game object
-     * @throws SQLException
-     */
 
     public void addGameFromObject(Game game) throws SQLException {
         String sql = """
@@ -415,13 +311,6 @@ public class DatabaseIO {
         System.out.println("Game added");
     }
 
-    /**
-     * This method adds a new movie to the database
-     * 
-     * @param movie - The movie to be added - As a Movie object
-     * @throws SQLException
-     */
-
     public void addMovieFromObject(Movie movie) throws SQLException {
         String sql = """
                 INSERT INTO `Movie` (`copy`, `available`, `title`, `genre`, `price`, `year`, `director`, `runtime`, `ageRating`) VALUES(?,?,?,?,?,?,?,?,?)""";
@@ -439,13 +328,6 @@ public class DatabaseIO {
         System.out.println("Movie added");
     }
 
-    /**
-     * This method adds a new compact disk to the database
-     * 
-     * @param compactDisk - The compact disk to be added - As a CompactDisk object
-     * @throws SQLException
-     */
-
     public void addCompactDiskFromObject(CompactDisk compactDisk) throws SQLException {
         String sql = """
                 INSERT INTO `CompactDisk` (`copy`, `available`, `title`, `genre`, `price`, `year`, `artist`, `tracks`, `ageRating`) VALUES(?,?,?,?,?,?,?,?,?)""";
@@ -462,16 +344,6 @@ public class DatabaseIO {
         pstmt.executeUpdate();
         System.out.println("CompactDisk added");
     }
-
-    // Search MENU
-
-    /**
-     * This method searches info about a book in the database
-     * 
-     * @param search - The search term
-     * @return - The results of the search
-     * @throws SQLException
-     */
 
     public String[][] searchBook(String search) throws SQLException {
         String sql = """
@@ -492,14 +364,6 @@ public class DatabaseIO {
         }
         return results.toArray(new String[0][0]);
     }
-
-    /**
-     * This method searches info in the database
-     * 
-     * @param search - The search term
-     * @return - The results of the search
-     * @throws SQLException
-     */
 
     public String[][] searchAll(String search) throws SQLException {
         String sql = """
@@ -582,7 +446,6 @@ public class DatabaseIO {
         }
     }
 
-    // CRUD - Delete
     public void deleteBook(int id) {
         try {
             String sql = """
@@ -643,7 +506,6 @@ public class DatabaseIO {
         }
     }
 
-    // CRUD - Update
     public void updateBook(int id, int copy, int available, String title, String genre, float price, int year,
             String author, int pages, String condition) {
         try {
@@ -725,23 +587,6 @@ public class DatabaseIO {
         }
     }
 
-    // Not used in final version
-    public String[][] readMaxId() {
-        String sql = """
-                SELECT MAX(id) FROM `Book`""";
-        List<String[]> results = new ArrayList<String[]>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String[] row = { rs.getString("MAX(id)") };
-                results.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return results.toArray(new String[0][0]);
-    }
 
     public String[][] readOneMovie(String title) {
         String sql = """
@@ -804,42 +649,6 @@ public class DatabaseIO {
         return results.toArray(new String[0][0]);
     }
 
-    // Not working as intended
-    public String[][] readOnePerson(String username2) {
-        String sql = """
-                SELECT * FROM `User` WHERE `username` = ?""";
-        List<String[]> results = new ArrayList<String[]>();
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, username2);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                String[] row = { rs.getString("username"), rs.getString("address"), rs.getString("email") };
-                results.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return results.toArray(new String[0][0]);
-    }
-
-    // Not working as intended
-    public boolean updateTable(String tableName, String newTableName) {
-        try {
-            String sql = """
-                    UPDATE ? SET ? = ? WHERE ? = ?
-                    """;
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, tableName);
-            pstmt.setString(2, newTableName);
-            pstmt.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return false;
-    }
-
     public void addPersonFromObject(Person person) {
         String sql = """
                 INSERT INTO `User`(`username`, `address`, `email`) VALUES (?,?,?)""";
@@ -853,73 +662,6 @@ public class DatabaseIO {
             System.out.println(e.getMessage());
         }
         System.out.println("Person added to database");
-    }
-
-    // The next 4 methods will be refactored into one method acceppting 2 parameters
-    // Run out of time to do this before deadline
-    public String[][] readMovieRuntime() {
-        String sql = """
-                SELECT * FROM `MovieRuntime`""";
-        List<String[]> results = new ArrayList<String[]>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String[] row = { rs.getString("title"), rs.getString("runtime") };
-                results.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return results.toArray(new String[0][0]);
-    }
-
-    public String[][] readCDTracks() {
-        String sql = """
-                SELECT * FROM `CompactDiskTracks`""";
-        List<String[]> results = new ArrayList<String[]>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String[] row = { rs.getString("title"), rs.getString("tracks") };
-                results.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return results.toArray(new String[0][0]);
-    }
-
-    public String[][] readGameAgeLimit() {
-        String sql = """
-                SELECT * FROM `GameAgeRating`""";
-        List<String[]> results = new ArrayList<String[]>();
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String[] row = { rs.getString("title"), rs.getString("ageRating") };
-                results.add(row);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return results.toArray(new String[0][0]);
-    }
-
-    public String[][] readReminders() throws SQLException {
-        String sql = """
-                SELECT * FROM `Remainders`""";
-        List<String[]> results = new ArrayList<String[]>();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
-        while (rs.next()) {
-            String[] row = { rs.getString("id"), rs.getString("username"), rs.getString("Type"),
-                    rs.getString("returnDate"), rs.getString("email"), rs.getString("adress") };
-            results.add(row);
-        }
-        return results.toArray(new String[0][0]);
     }
 
     public void addReminderFromObject(Reminder reminder) {

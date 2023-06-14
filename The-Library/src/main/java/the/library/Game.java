@@ -1,14 +1,12 @@
 package the.library;
 
 public class Game implements Item, Comparable<Game> {
-    // Interface variables
     private int copy;
     private int available;
     private String title;
     private String genre;
     private float price;
     private int year;
-    // Game variables
     private String publisher;
     private String platform;
     private int playtime;

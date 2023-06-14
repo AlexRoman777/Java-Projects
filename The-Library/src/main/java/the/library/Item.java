@@ -1,7 +1,6 @@
 package the.library;
 
 public interface Item {
-    // Declaring the interface variables
     public int copy = 0;
     public int available = 0;
     public String title = null;
@@ -9,7 +8,6 @@ public interface Item {
     public float price = 0f;
     public int year = 0;
 
-    // Declaring the interface methods
     public void setCopy(int copy);
 
     public int getCopy();

@@ -4,39 +4,12 @@ import java.io.IOException;
 
 public class Utils {
 
-    // Color Constants
-
-    /**
-     * ANSI escape code for red color
-     */
     public static final String RED = "\u001B[31m";
-
-    /**
-     * ANSI escape code for reseting the color to default
-     */
     public static final String RESET = "\u001B[0m";
-
-    /**
-     * ANSI escape code for green color
-     */
     public static final String GREEN = "\u001B[32m";
-
-    /**
-     * ANSI escape code for yellow color
-     */
     public static final String YELLOW = "\u001B[33m";
-
-    /**
-     * ANSI escape code for blue color
-     */
     public static final String BLUE = "\u001B[34m";
-
-    /**
-     * ANSI escape code to move the cursor up one line
-     */
     public static final String MOVEUP = "\033[1A";
-
-    // Menu Constants
 
     public static final String MAIN = """
             ======================== MAIN MENU ==========================
@@ -210,9 +183,6 @@ public class Utils {
             =============================================================
             """;
 
-    /**
-     * This method is used to pause the program until the user presses enter.
-     */
     public static void pressEnterToContinue() {
         System.out.println(GREEN + "Press Enter to continue..." + RESET);
         try {
@@ -226,11 +196,7 @@ public class Utils {
         System.out.println("=============================================================");
     }
 
-    /**
-     * This method prints a separator with a specified length.
-     * 
-     * @param length - the length of the separator
-     */
+
     public static void printSeparator(int length) {
         for (int i = 0; i < length; i++) {
             System.out.print(YELLOW + "=");
@@ -238,12 +204,6 @@ public class Utils {
         System.out.println(RESET);
     }
 
-    /**
-     * This method prints a string with a delay between each character.
-     * 
-     * @param text  - the string to be printed
-     * @param delay - in milliseconds
-     */
     public static void printWithDelay(String text, int delay) {
         for (int i = 0; i < text.length(); i++) {
             System.out.print(text.charAt(i));
@@ -256,11 +216,6 @@ public class Utils {
         System.out.println();
     }
 
-    /**
-     * This method delays the program for a specified amount of time.
-     * 
-     * @param time - in milliseconds
-     */
     public static void delayRun(int time) {
         try {
             Thread.sleep(time);
@@ -275,18 +230,11 @@ public class Utils {
         System.out.print(RESET);
     }
 
-    // This works - Used only once
     public static void printRed(String text) {
         System.out.print(RED + text + RESET);
         System.out.println();
     }
 
-    /**
-     * This method capitalizes the first letter of each word in a string
-     * 
-     * @param str
-     * @return
-     */
     public static String capitalizeWord(String str) {
         String words[] = str.split("\\s");
         String capitalizeWord = "";
@@ -298,28 +246,12 @@ public class Utils {
         return capitalizeWord.trim();
     }
 
-    // This works - Test 18 - Unnecessary
-    public static int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
-    /**
-     * This method prints a string array.
-     * Used for printing the result of a SQL query.
-     * 
-     * @param res - the string array to be printed
-     */
     protected static void printString(String[][] res) {
         for (String[] row : res) {
             System.out.println(String.join(",", row));
         }
     }
-
-    /**
-     * Prints a message that a feature is not implemented yet.
-     * 
-     * @param res - the string array to be printed
-     */
+    
     public static void notImplemented(String feature) {
         printSeparator();
         System.out.println("This feature: " + RED + feature + RESET + " is not implemented yet.");
