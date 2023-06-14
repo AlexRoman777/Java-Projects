@@ -1,15 +1,12 @@
 package the.library;
 
 public class Movie implements Item, Comparable<Movie> {
-    // Interface variables
     private int copy;
     private int available;
     private String title;
     private String genre;
     private float price;
     private int year;
-
-    // Film variables
     private String director;
     private int runtime;
     private String agerating;

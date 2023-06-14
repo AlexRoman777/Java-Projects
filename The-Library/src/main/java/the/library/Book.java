@@ -1,14 +1,12 @@
 package the.library;
 
 public class Book implements Item, Comparable<Book> {
-    // Interface variables
     private int copy;
     private int available;
     private String title;
     private String genre;
     private float price;
     private int year;
-    // Book variables
     private String author;
     private String condition;
     private int pages;
@@ -187,7 +185,6 @@ public class Book implements Item, Comparable<Book> {
         while (!condition.equals("Good") && !condition.equals("Excellent")) {
             return "Book copy nr. " + copy + ", " + title + " (" + year + ") is in " + condition + " condition.";
         }
-        // Go up on row in terminal
         return Utils.MOVEUP;
     }
 

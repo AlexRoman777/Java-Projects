@@ -58,10 +58,7 @@ public class Person implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    // Example of method overloading and polymorphism
-    // I have overloaded the getDetails method to allow for different
-    // combinations of parameters to be passed in.
+    
     public String getDetails() {
         return "Username: " + Utils.RED + username + Utils.RESET + "\nEmail: " + Utils.RED + email + Utils.RESET
                 + "\nAddress: " + Utils.RED + address + Utils.RESET;

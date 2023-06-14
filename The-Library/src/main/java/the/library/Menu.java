@@ -16,9 +16,6 @@ public class Menu extends Utils {
         System.out.println(menu);
     }
 
-    /**
-     * Prints out the main menu and handle the user input.
-     */
     public void mainMenu() throws SQLException {
         PrintOut printOut = new PrintOut();
         String choice;
@@ -29,7 +26,6 @@ public class Menu extends Utils {
 
         try (Scanner input = new Scanner(System.in)) {
             printOut.printTitle();
-            // printOut.printInstructions();
             pressEnterToContinue();
             do {
                 showMenu(MAIN);
@@ -825,14 +821,6 @@ public class Menu extends Utils {
 
     }
 
-    /**
-     * Asks for a string and returns it
-     * Handles InputMismatchException
-     * 
-     * @param string
-     * @param input
-     * @return
-     */
     private float askForFloat(String string, Scanner input) {
         try {
             System.out.print(RED + "Enter " + string + ": " + RESET);
@@ -844,14 +832,6 @@ public class Menu extends Utils {
         }
     }
 
-    /**
-     * Asks for a string and returns it
-     * Handles InputMismatchException
-     * 
-     * @param string
-     * @param input
-     * @return
-     */
     private int askForInt(String string, Scanner input) {
         try {
             System.out.print(RED + "Enter " + string + ": " + RESET);
@@ -863,14 +843,6 @@ public class Menu extends Utils {
         }
     }
 
-    /**
-     * Asks for a string and returns it
-     * Handles InputMismatchException
-     * 
-     * @param string
-     * @param input
-     * @return
-     */
     private String askForString(String string, Scanner input) {
         try {
             System.out.print(RED + "Enter " + string + ": " + RESET);
